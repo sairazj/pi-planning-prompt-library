@@ -1,0 +1,182 @@
+{
+  "PI: Story Breakdown": {
+    "prefix": "pi-story",
+    "description": "Break a feature into sprint-ready stories using Copilot Chat",
+    "body": [
+      "@workspace Break the following feature into implementation stories.",
+      "Feature: ${1:feature title and description}",
+      "Team capacity per sprint: ${2:X} story points",
+      "",
+      "For each story provide:",
+      "1. Title (imperative verb: Add / Enable / Fix / Update)",
+      "2. User story: As a ${3:persona}, I want to..., so that...",
+      "3. Acceptance criteria (Gherkin format, min 3)",
+      "4. Story points (Fibonacci: 1, 2, 3, 5, 8 — max 8)",
+      "5. Suggested sprint (1-${4:N})",
+      "6. Dependencies on other stories",
+      "",
+      "Constraints: no story > 8pts, independently deployable, follow existing codebase patterns."
+    ]
+  },
+
+  "PI: Complexity Estimate": {
+    "prefix": "pi-estimate",
+    "description": "Estimate feature complexity from the codebase",
+    "body": [
+      "@workspace Estimate the complexity of implementing:",
+      "${1:feature description}",
+      "",
+      "Provide:",
+      "- T-shirt size: XS / S / M / L / XL",
+      "- Confidence: Low / Medium / High",
+      "- Files most likely to change",
+      "- Existing patterns or utilities to reuse",
+      "- Top 3 unknowns or risks"
+    ]
+  },
+
+  "PI: Spike Story": {
+    "prefix": "pi-spike",
+    "description": "Write a time-boxed spike story for unknowns",
+    "body": [
+      "Write a spike story for the following unknown:",
+      "${1:topic or question}",
+      "",
+      "Key unknowns: ${2:list what we don't know}",
+      "",
+      "Format:",
+      "- Title: Spike: [topic]",
+      "- Objective: What question will this answer?",
+      "- Timebox: ${3|4h,8h,16h|}",
+      "- Approach: How will we investigate?",
+      "- Definition of Done: What artefact or decision is produced?",
+      "- Points: 2"
+    ]
+  },
+
+  "PI: Dependency Check": {
+    "prefix": "pi-deps",
+    "description": "Check cross-team dependencies from the codebase",
+    "body": [
+      "@workspace If ${1:Team B / external team} changes ${2:module or service},",
+      "which of our files or features would be affected?",
+      "",
+      "List:",
+      "1. Direct dependencies (imports the changed module)",
+      "2. Indirect dependencies (2 levels deep)",
+      "3. Suggested owner for each impacted module",
+      "4. Risk level if this change is not coordinated: Low / Medium / High"
+    ]
+  },
+
+  "PI: Acceptance Criteria": {
+    "prefix": "pi-ac",
+    "description": "Generate Gherkin acceptance criteria for a story",
+    "body": [
+      "Write Gherkin acceptance criteria for:",
+      "Story: ${1:story title and description}",
+      "Context: ${2:relevant system or domain context}",
+      "",
+      "Include:",
+      "- 1 happy path scenario",
+      "- 1 edge case scenario",
+      "- 1 error or failure scenario",
+      "",
+      "Format:",
+      "Scenario: [name]",
+      "  Given [precondition]",
+      "  When [action]",
+      "  Then [expected outcome]"
+    ]
+  },
+
+  "PI: ROAM Risk": {
+    "prefix": "pi-roam",
+    "description": "Classify risks using the ROAM framework",
+    "body": [
+      "Classify the following risks using ROAM (Resolved / Owned / Accepted / Mitigated):",
+      "",
+      "${1:paste risk list here}",
+      "",
+      "For each risk:",
+      "- ROAM status",
+      "- Owner (if Owned or Mitigated)",
+      "- Action or note",
+      "- Review date",
+      "",
+      "Output as a table: Risk | ROAM | Owner | Action | Review Date"
+    ]
+  },
+
+  "PI: Sprint Goal": {
+    "prefix": "pi-goal",
+    "description": "Generate sprint goal options from committed stories",
+    "body": [
+      "Based on the following stories committed for Sprint ${1:N}, write a sprint goal.",
+      "",
+      "Stories:",
+      "${2:paste story titles}",
+      "",
+      "Requirements:",
+      "- One sentence, outcome-focused (not a task list)",
+      "- Describes value delivered, not work done",
+      "- Demonstrable at sprint review",
+      "",
+      "Suggest 3 alternative sprint goal options."
+    ]
+  },
+
+  "PI: PR Description": {
+    "prefix": "pi-pr",
+    "description": "Generate a PR description from a story",
+    "body": [
+      "Write a PR description for:",
+      "Story: ${1:paste story title and description}",
+      "Linked issue: #${2:issue number}",
+      "",
+      "Include:",
+      "- Summary (2-3 sentences)",
+      "- What changed (bullet points)",
+      "- How to test (steps)",
+      "- Breaking changes (if any)",
+      "- Screenshots or notes (if UI change)"
+    ]
+  },
+
+  "PI: Definition of Ready Check": {
+    "prefix": "pi-dor",
+    "description": "Validate a story against Definition of Ready",
+    "body": [
+      "Check whether the following story meets our Definition of Ready:",
+      "",
+      "${1:paste full story here}",
+      "",
+      "Criteria:",
+      "- [ ] User story format (As a / I want / So that)",
+      "- [ ] Acceptance criteria defined (minimum 2)",
+      "- [ ] Story points estimated",
+      "- [ ] Dependencies identified",
+      "- [ ] No unresolved blockers",
+      "- [ ] Completable in one sprint",
+      "",
+      "Return: READY or NOT READY, with list of unmet criteria."
+    ]
+  },
+
+  "PI: Tech Debt Scan": {
+    "prefix": "pi-debt",
+    "description": "Surface tech debt relevant to planned PI work",
+    "body": [
+      "@workspace We are planning to implement the following in the next PI:",
+      "${1:list features or changes}",
+      "",
+      "Identify:",
+      "1. Areas of high complexity or tech debt that could slow delivery",
+      "2. Missing test coverage in modules we plan to change",
+      "3. Fragile integrations or third-party dependencies",
+      "4. Performance or scalability concerns",
+      "",
+      "Rate each: Low / Medium / High risk to PI delivery."
+    ]
+  }
+}
