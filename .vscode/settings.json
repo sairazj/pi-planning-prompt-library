@@ -1,0 +1,21 @@
+{
+  "github.copilot.chat.experimental.mcp.enabled": true,
+  "github.copilot.chat.agent.enabled": true,
+
+  "chat.mcp.enabled": true,
+
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "file": ".github/copilot-instructions.md"
+    }
+  ],
+
+  "editor.snippetSuggestions": "top",
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": false
+    }
+  }
+}
