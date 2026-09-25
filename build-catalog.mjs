@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const read = (p) => readFileSync(join(root, p), 'utf8').replace(/\r\n/g, '\n');
-const UP = 'https://github.com/valentinarodrigues/pi-planning-prompt-library/blob/main/';
+const UP = 'https://github.com/sairazj/pi-planning-prompt-library/blob/main/';
 
 // Split YAML frontmatter from body (simple key: value parser, enough for our files).
 function parse(text) {
