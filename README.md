@@ -16,6 +16,43 @@ built for teams using **GitHub Copilot**, **Claude**, **Rovo (Atlassian)**, and 
 | **Rovo Templates** (`rovo/templates/`) | Ready-to-paste prompts for Rovo Chat in Jira/Confluence |
 | **Rovo Agents** (`rovo/agents/`) | Agent configurations for automated backlog grooming and dependency scanning |
 | **Prompt Library** (`prompts/`) | Organised by phase and tool for manual use |
+| **Copilot Skills Library** (`.github/skills/`, `.github/agents/`, `.github/prompts/`) | Agent Skills, custom agents and slash commands with a human review gate (see below) |
+
+---
+
+## Copilot Skills Library (human-in-the-loop)
+
+Reusable GitHub Copilot skills for PI Planning prep. They draft acceptance criteria,
+split oversized stories and run INVEST checks. Every skill ends at a **review gate**:
+Copilot shows a numbered table of drafts and waits for `approve 1,3` · `edit 2: …` ·
+`reject 4: reason` · `hold`. Nothing is chained, written to Jira or saved to a file
+without an approval for that item.
+
+| Type | Items |
+|---|---|
+| Core skills | `acceptance-criteria-drafter`, `story-splitter`, `invest-checker`, `human-review-gate` |
+| Supporting skills | `definition-of-ready`, `feature-breakdown`, `spike-writer`, `dependency-mapper`, `wsjf-prioritizer`, `capacity-planner`, `roam-risk-board`, `pi-objectives-writer` |
+| Agents | `pi-prep-coach` (full pipeline), `story-refiner`, `backlog-readiness-scanner` (read-only) |
+| Slash commands | `/draft-ac`, `/split-story`, `/invest-check`, `/dor-check`, `/pi-prep` |
+
+Browse everything in `catalog.html` (open it in a browser).
+
+**Install into another repo.** Agents and prompts bring the skills they use:
+
+```powershell
+.\install.ps1 -Target ..\my-repo                         # everything
+.\install.ps1 -Target ..\my-repo -Agent story-refiner    # one agent + its skills
+.\install.ps1 -Target ..\my-repo -Skill invest-checker   # one skill + review gate
+```
+
+```bash
+./install.sh ../my-repo agent story-refiner
+```
+
+Then reload VS Code and pick the agent from the Copilot Chat agent dropdown, or type `/`
+for the prompts. Agent skills need `chat.useAgentSkills` enabled. Approved decisions are
+logged using `templates/review-log.md`. After editing any skill, run `node build-catalog.mjs`
+to regenerate the catalog.
 
 ---
 
