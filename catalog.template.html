@@ -164,7 +164,7 @@ footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-bet
       <a href="#library">Library</a>
       <a href="#pipeline">Pipeline</a>
       <a href="https://skills.agile36.com/#/agents" target="_blank" rel="noopener">agile36 ↗</a>
-      <a class="gh" href="https://github.com/valentinarodrigues/pi-planning-prompt-library" target="_blank" rel="noopener">Upstream repo ↗</a>
+      <a class="gh" href="https://github.com/sairazj/pi-planning-prompt-library" target="_blank" rel="noopener">GitHub ↗</a>
     </nav>
   </div>
 </header>
@@ -208,7 +208,7 @@ footer .wrap{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:space-bet
 
 <footer>
   <div class="wrap">
-    <span>Prompts adapted from <a href="https://github.com/valentinarodrigues/pi-planning-prompt-library" target="_blank" rel="noopener">valentinarodrigues/pi-planning-prompt-library</a>. Layout modelled on <a href="https://skills.agile36.com/#/agents" target="_blank" rel="noopener">skills.agile36.com</a>.</span>
+    <span>Source: <a href="https://github.com/sairazj/pi-planning-prompt-library" target="_blank" rel="noopener">sairazj/pi-planning-prompt-library</a>, forked from <a href="https://github.com/valentinarodrigues/pi-planning-prompt-library" target="_blank" rel="noopener">valentinarodrigues</a>. Layout modelled on <a href="https://skills.agile36.com/#/agents" target="_blank" rel="noopener">skills.agile36.com</a>.</span>
     <span>Copilot Agent Skills · <code>.github/skills/*/SKILL.md</code></span>
   </div>
 </footer>
@@ -291,7 +291,8 @@ function openItem(id){
   const upstream = (it.upstream||[]).map(p => `<a href="${DATA.up}${p}" target="_blank" rel="noopener">Adapted from ${esc(p)} →</a>`).join('');
   const links = it.type === 'companion'
     ? `<a href="${it.url}" target="_blank" rel="noopener">View on skills.agile36.com →</a><span class="note">Listed here as a companion. Its source and install live on agile36.</span>`
-    : (upstream || `<span class="note">New in this library. It has no upstream prompt.</span>`);
+    : `<a href="${DATA.up}${it.path}" target="_blank" rel="noopener">View source on GitHub →</a>` +
+      (upstream || `<span class="note">New in this library. It has no upstream prompt.</span>`);
   $('#modal').innerHTML = `
     <button class="x" aria-label="Close" data-close>×</button>
     <div class="badges"><span class="b b-type">${TYPE_LABEL[it.type]}</span><span class="b b-cat">${esc(it.category)}</span>${it.core?'<span class="b b-core">core</span>':''}</div>
